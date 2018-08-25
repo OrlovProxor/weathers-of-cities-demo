@@ -1,6 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="app_name">weathers_of_cities</string>
-
   <string name="name">name :</string>
   <string name="username">user name :</string>
   <string name="password">password :</string>
@@ -15,14 +15,22 @@
   <string name="password_must_contains_digit">Password must contains digit</string>
   <string name="password_must_contains_upper_case">Password must contains Upper case</string>
   <string name="password_must_contains_lower_case">Password must contains Lower case</string>
-  <string name="title_activity_main">Main2Activity</string>
+  <string name="title_activity_main">Main Activity</string>
   <string name="tab_text_1">weather by city</string>
-  <string name="tab_text_2">Tab 2</string>
-  <string name="tab_text_3">Tab 3</string>
-  <string name="action_settings">Settings</string>
-  <string name="section_format">Hello World from section: %1$d</string>
+  <string name="tab_text_2">cities</string>
+  <string name="tab_text_3">maps</string>
+
+
   <string name="input_city_name">input city name</string>
   <string name="get_weather_by_city">get weather by city</string>
+  <string name="cities">cities</string>
+  <string name="delete">delete</string>
+  <string name="showdetails">details</string>
+
+  <string name="some_error_with_internet">some error with internet!</string>
+  <string name="temperature">Temperature:</string>
+  <string name="YahooNotFoundCityException"> not found city :</string>
+  <string name="WeatherCityDetailsDialogTitle">WeatherCityDetailsDialogTitle</string>
 
 
 </resources>

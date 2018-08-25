@@ -2,8 +2,8 @@ package com.orlov_prokhor.weathers_of_cities.interactor.repository.weather_api.y
 
 public class Atmosphere {
 
-  public String rising;
-  public String visibility;
-  public String humidity;
-  public String pressure;
+  public Integer rising;
+  public Float   visibility;
+  public Integer humidity;
+  public Float   pressure;
 }

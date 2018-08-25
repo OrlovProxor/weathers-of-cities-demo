@@ -7,6 +7,7 @@ import static com.orlov_prokhor.weathers_of_cities.utils.PasswordValidator.valid
 
 import android.app.Activity;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.databinding.Observable;
 import android.databinding.Observable.OnPropertyChangedCallback;
@@ -78,6 +79,15 @@ public class RegisterUserActivity extends AppCompatActivity {
     model.registerUser.addOnPropertyChangedCallback(onInputErrors);
     model.registerUser.notifyPropertyChanged(BR._all);
   }
+
+  public static void start(Activity activity, String userName) {
+    Intent myIntent = new Intent(activity, RegisterUserActivity.class);
+    myIntent.putExtra(USER_NAME, userName);
+    activity.startActivity(myIntent);
+    activity.finish();
+  }
+
+
 
   @Override
   protected void onDestroy() {

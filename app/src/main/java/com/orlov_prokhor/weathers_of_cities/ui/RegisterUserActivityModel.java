@@ -4,7 +4,6 @@ import static com.orlov_prokhor.weathers_of_cities.utils.PasswordValidator.valid
 
 import android.app.Activity;
 import android.arch.lifecycle.ViewModel;
-import android.content.Intent;
 import android.content.res.Resources;
 import android.databinding.Observable;
 import android.databinding.Observable.OnPropertyChangedCallback;
@@ -106,11 +105,7 @@ public class RegisterUserActivityModel extends ViewModel {
     }
 
     App.getInstance().getAppComponent().getUserRepository().saveUser(registerUser);
-    App.getInstance().getAppComponent().getUser().setUser(registerUser);
-    Intent myIntent = new Intent(App.getInstance(), MainActivity.class);
-    myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-    activity.startActivity(myIntent);
-    activity.finish();
+    MainActivity.start(activity, registerUser);
 
   }
 

@@ -38,7 +38,7 @@ public class YahooWeatherRepositoryTest {
 
     weatherRepository.getWeatherYahooResponse(OMSK).subscribe(testObserver);
 
-    testObserver.awaitDone(5, TimeUnit.SECONDS);
+    testObserver.awaitDone(50, TimeUnit.SECONDS);
     assertEquals(1, testObserver.valueCount());
     WeatherCity yahooResponse = (WeatherCity) testObserver.values().get(0);
 
@@ -47,7 +47,7 @@ public class YahooWeatherRepositoryTest {
     Timber.i("yahooResponse: %s", objectToStr(yahooResponse));
 
     Timber.i("yahooResponse.query.results.channel: %s", objectToStr(yahooResponse));
-    Timber.i("yahooResponse.query.results.channel.item: %s", objectToStr(yahooResponse.item));
+    Timber.i("yahooResponse.query.results.channel.item: %s", objectToStr(yahooResponse.weather));
     Timber.i("yahooResponse.query.results.channel.astronomy: %s",
              objectToStr(yahooResponse.astronomy));
     Timber.i("yahooResponse.query.results.channel.atmosphere: %s",
@@ -58,10 +58,11 @@ public class YahooWeatherRepositoryTest {
 
     assertNotEquals(null, yahooResponse);
 
-    assertNotEquals(null, yahooResponse.item);
+    assertNotEquals(null, yahooResponse.weather);
     assertNotEquals(null, yahooResponse.astronomy);
     assertNotEquals(null, yahooResponse.atmosphere);
     assertNotEquals(null, yahooResponse.location);
     assertNotEquals(null, yahooResponse.wind);
+    assertNotEquals(null, yahooResponse.weather.date);
   }
 }

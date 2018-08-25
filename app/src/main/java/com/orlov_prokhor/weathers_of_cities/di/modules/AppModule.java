@@ -3,7 +3,10 @@ package com.orlov_prokhor.weathers_of_cities.di.modules;
 
 import android.content.Context;
 import com.orlov_prokhor.weathers_of_cities.domains.UserCurrent;
+import com.orlov_prokhor.weathers_of_cities.interactor.persistence.dao.WeathersDao;
+import com.orlov_prokhor.weathers_of_cities.interactor.persistence.database.WeathersDatabase;
 import com.orlov_prokhor.weathers_of_cities.interactor.repository.UserRepository;
+import com.orlov_prokhor.weathers_of_cities.interactor.repository.WeatherRepository;
 import com.orlov_prokhor.weathers_of_cities.interactor.repository.YahooWeatherRepository;
 import dagger.Module;
 import dagger.Provides;
@@ -21,18 +24,15 @@ public class AppModule {
     this.context = context;
   }
 
-
-/*
-  public static AppComponent getAppComponent(Context context) {
-    return DaggerAppComponent.builder()
-                             .appModule(new AppModule(context))
-                             .build();
-  }
-*/
-
   @Provides
   Context getContext() {
     return context;
+  }
+
+  @Provides
+  @Singleton
+  WeathersDatabase getWeathersDatabase(Context context) {
+    return WeathersDatabase.getInstance(context);
   }
 
   @Provides
@@ -52,4 +52,14 @@ public class AppModule {
     return new YahooWeatherRepository();
   }
 
+  @Provides
+  @Singleton
+  WeathersDao getWeathersDao(WeathersDatabase weathersDatabase) {
+    return weathersDatabase.weathersDao();
+  }
+
+  @Provides
+  WeatherRepository getWeatherRepository(WeathersDao weathersDao) {
+    return new WeatherRepository(weathersDao);
+  }
 }

@@ -7,16 +7,19 @@ import android.databinding.Observable;
 import android.databinding.Observable.OnPropertyChangedCallback;
 import android.databinding.ObservableField;
 import com.orlov_prokhor.weathers_of_cities.App;
+import com.orlov_prokhor.weathers_of_cities.R;
+import com.orlov_prokhor.weathers_of_cities.interactor.repository.WeatherRepository;
 import com.orlov_prokhor.weathers_of_cities.interactor.repository.YahooWeatherRepository;
+import com.orlov_prokhor.weathers_of_cities.interactor.repository.YahooWeatherRepository.YahooNotFoundCityException;
 import javax.inject.Inject;
 
 public class WeatherByCityViewModel extends ViewModel {
 
-  public ObservableField<String>  cityName       = new ObservableField<>();
-  public ObservableField<Boolean> enableFindCity = new ObservableField<>();
-  public ObservableField<String>  weather        = new ObservableField<>();
-  @Inject
-  YahooWeatherRepository yahooWeatherRepository;
+  public  ObservableField<String>  cityName       = new ObservableField<>();
+  public  ObservableField<Boolean> enableFindCity = new ObservableField<>();
+  public  ObservableField<String>  weather        = new ObservableField<>();
+  @Inject YahooWeatherRepository   yahooWeatherRepository;
+  @Inject WeatherRepository        weatherRepository;
 
   public WeatherByCityViewModel() {
 
@@ -44,7 +47,23 @@ public class WeatherByCityViewModel extends ViewModel {
     }
 
     yahooWeatherRepository.getWeatherYahooResponse(city)
-                          .subscribe((it) -> { weather.set(objectToJson(it));});
+                          .subscribe((it) -> {
+                                       weather.set(objectToJson(it));
+                                       weatherRepository.upsertWeatherCity(it);
+                                     },
+                                     (err) -> {
+                                       String msg = "";
+                                       if (err instanceof YahooNotFoundCityException) {
+                                         msg = App.getInstance().getResources().getString(
+                                             R.string.YahooNotFoundCityException)
+                                               + ((YahooNotFoundCityException) err).message;
+                                       } else {
+                                         msg = App.getInstance().getResources().getString(
+                                             R.string.some_error_with_internet);
+                                       }
+                                       weather.set(msg);
+                                     }
+                                    );
   }
 
 }

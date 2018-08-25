@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  >
+
+
+  <data>
+    <import type="java.lang.Integer"/>
+    <import type="java.util.Date"/>
+    <import type="com.orlov_prokhor.weathers_of_cities.utils.DateTimeUtils"/>
+
+    <variable
+      name="weatherCity"
+      type="com.orlov_prokhor.weathers_of_cities.interactor.persistence.entity.WeatherCity"/>
+  </data>
+
+
+  <android.support.constraint.ConstraintLayout
+    android:id="@+id/tvLocationFull"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+      android:id="@+id/tvtextLabel"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
+      android:text="tvtextLabel"
+      app:layout_constraintStart_toStartOf="@+id/guideline7"
+      app:layout_constraintTop_toBottomOf="@+id/tvcodeLabel"/>
+    <TextView
+      android:id="@+id/tvtext"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
+      android:layout_marginStart="8dp"
+      android:layout_marginEnd="8dp"
+      android:layout_marginLeft="8dp"
+      android:layout_marginRight="8dp"
+      android:text="@{weatherCity.weather.text}"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.0"
+      app:layout_constraintStart_toEndOf="@+id/tvtextLabel"
+      app:layout_constraintTop_toBottomOf="@+id/tvcodeLabel"/>
+    <TextView
+      android:id="@+id/tvcodeLabel"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
+      android:text="tvcodeLabel"
+      app:layout_constraintStart_toStartOf="@+id/guideline7"
+      app:layout_constraintTop_toBottomOf="@+id/tvtempLabel"/>
+    <TextView
+      android:id="@+id/tvcode"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
+      android:layout_marginStart="8dp"
+      android:layout_marginEnd="8dp"
+      android:layout_marginLeft="8dp"
+      android:layout_marginRight="8dp"
+
+      android:text='@{weatherCity.weather.code.toString()}'
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.0"
+      app:layout_constraintStart_toEndOf="@+id/tvcodeLabel"
+      app:layout_constraintTop_toBottomOf="@+id/tvtempLabel"/>
+    <TextView
+      android:id="@+id/tvtempLabel"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
+      android:text="tvtempLabel"
+      app:layout_constraintStart_toStartOf="@+id/guideline7"
+      app:layout_constraintTop_toBottomOf="@+id/tvdateLabel"/>
+    <TextView
+      android:id="@+id/tvtemp"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
+      android:layout_marginStart="8dp"
+      android:layout_marginEnd="8dp"
+      android:layout_marginLeft="8dp"
+      android:layout_marginRight="8dp"
+      android:text='@{String.format("%d °C", weatherCity.weather.temp)}'
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="1.0"
+      app:layout_constraintStart_toEndOf="@+id/tvtempLabel"
+      app:layout_constraintTop_toBottomOf="@+id/tvdateLabel"/>
+    <TextView
+      android:id="@+id/tvdateLabel"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
+      android:text="tvdateLabel"
+      app:layout_constraintStart_toStartOf="@+id/guideline7"
+      app:layout_constraintTop_toBottomOf="@+id/weatherGroup"/>
+    <TextView
+      android:id="@+id/weatherGroup"
+      android:layout_width="0dp"
+      android:layout_height="17dp"
+      android:layout_marginTop="16dp"
+      android:layout_marginStart="8dp"
+      android:layout_marginLeft="8dp"
+      android:text="weatherGroup"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/tvCity"/>
+    <TextView
+      android:id="@+id/locationGroup"
+      android:layout_width="0dp"
+      android:layout_height="17dp"
+      android:layout_marginTop="16dp"
+      android:layout_marginStart="8dp"
+      android:layout_marginLeft="8dp"
+      android:text="locationGroup"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"/>
+
+    <android.support.constraint.Guideline
+      android:id="@+id/guideline7"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      app:layout_constraintGuide_begin="17dp"/>
+
+
+    <TextView
+      android:id="@+id/tvCity"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
+      android:text="tvCity"
+      app:layout_constraintStart_toStartOf="@+id/guideline7"
+      app:layout_constraintTop_toBottomOf="@+id/locationGroup"/>
+    <TextView
+      android:id="@+id/tvdate"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
+      android:layout_marginStart="8dp"
+      android:layout_marginEnd="8dp"
+      android:layout_marginLeft="8dp"
+      android:layout_marginRight="8dp"
+      android:text="@{DateTimeUtils.toISO8601UTC(weatherCity.weather.date)  }"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.0"
+      app:layout_constraintStart_toEndOf="@+id/tvdateLabel"
+      app:layout_constraintTop_toBottomOf="@+id/weatherGroup"/>
+    <TextView
+      android:id="@+id/tvLocation"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="8dp"
+      android:layout_marginEnd="8dp"
+      android:layout_marginLeft="8dp"
+      android:layout_marginRight="8dp"
+      android:text="@{weatherCity.locationFull}"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.0"
+      app:layout_constraintStart_toEndOf="@+id/tvCity"
+      app:layout_constraintTop_toTopOf="@+id/tvCity"/>
+
+
+  </android.support.constraint.ConstraintLayout>
+
+</layout>

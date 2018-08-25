@@ -29,7 +29,9 @@
     <activity
       android:label="@string/title_activity_main"
       android:name=".ui.main_activity.MainActivity"
-      android:theme="@style/AppTheme.NoActionBar">
+      android:exported="true"
+      android:theme="@style/AppTheme.NoActionBar"
+      >
     </activity>
   </application>
 

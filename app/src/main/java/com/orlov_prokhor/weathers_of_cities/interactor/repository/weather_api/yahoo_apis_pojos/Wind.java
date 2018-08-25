@@ -2,7 +2,7 @@ package com.orlov_prokhor.weathers_of_cities.interactor.repository.weather_api.y
 
 public class Wind {
 
-  public String chill;
-  public String speed;
-  public String direction;
+  public Integer chill;
+  public Float   speed;
+  public Integer direction;
 }

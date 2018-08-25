@@ -1,11 +1,8 @@
 package com.orlov_prokhor.weathers_of_cities.ui;
 
 
-import static com.orlov_prokhor.weathers_of_cities.ui.RegisterUserActivityModel.USER_NAME;
-
 import android.app.Activity;
 import android.arch.lifecycle.ViewModel;
-import android.content.Intent;
 import android.databinding.Observable;
 import android.databinding.Observable.OnPropertyChangedCallback;
 import android.databinding.ObservableField;
@@ -58,20 +55,13 @@ public class LoginActivityModel extends ViewModel {
   }
 
   public void showRegisterUserActivity(View view, Activity activity) {
-
-    Intent myIntent = new Intent(App.getInstance(), RegisterUserActivity.class);
-    myIntent.putExtra(USER_NAME, user.getUserName());
-    activity.startActivity(myIntent);
-    activity.finish();
-
+    RegisterUserActivity.start(activity, user.getUserName());
   }
 
 
-  public void login() {
+  public void login(Activity activity) {
     if (login.get()) {
-      Intent myIntent = new Intent(App.getInstance(), MainActivity.class);
-      myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-      App.getInstance().startActivity(myIntent);
+      MainActivity.start(activity, user);
     }
   }
 

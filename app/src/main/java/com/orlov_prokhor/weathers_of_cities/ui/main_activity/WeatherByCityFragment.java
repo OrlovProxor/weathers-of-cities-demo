@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.orlov_prokhor.weathers_of_cities.R;
 import com.orlov_prokhor.weathers_of_cities.databinding.ActivityMainWeatherByCityFragmentBinding;
 import com.orlov_prokhor.weathers_of_cities.utils.ActivityUtils;
+import timber.log.Timber;
 
 public class WeatherByCityFragment extends Fragment {
 
@@ -18,7 +19,7 @@ public class WeatherByCityFragment extends Fragment {
   ActivityMainWeatherByCityFragmentBinding mBinding;
 
   public WeatherByCityFragment() {
-
+    Timber.i("WeatherByCityFragment.create");
   }
 
   /**
@@ -34,7 +35,7 @@ public class WeatherByCityFragment extends Fragment {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
-
+    Timber.i("WeatherByCityFragment.onCreateView");
     mBinding = DataBindingUtil
                    .inflate(inflater, R.layout.activity_main_weather_by_city_fragment, container,
                             false);
@@ -45,7 +46,7 @@ public class WeatherByCityFragment extends Fragment {
   @Override
   public void onActivityCreated(@Nullable Bundle savedInstanceState) {
     super.onActivityCreated(savedInstanceState);
-
+    Timber.i("WeatherByCityFragment.onActivityCreated");
     weatherByCityViewModel = ViewModelProviders.of(this.getActivity())
                                                .get(WeatherByCityViewModel.class);
     mBinding.setViewModel(weatherByCityViewModel);

@@ -1,5 +1,7 @@
 package com.orlov_prokhor.weathers_of_cities.ui.main_activity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -8,10 +10,11 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
+import com.orlov_prokhor.weathers_of_cities.App;
 import com.orlov_prokhor.weathers_of_cities.R;
+import com.orlov_prokhor.weathers_of_cities.interactor.persistence.entity.User;
 import com.orlov_prokhor.weathers_of_cities.utils.ActivityUtils;
+import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -52,28 +55,18 @@ public class MainActivity extends AppCompatActivity {
   }
 
 
-  @Override
-  public boolean onCreateOptionsMenu(Menu menu) {
-    // Inflate the menu; this adds items to the action bar if it is present.
-    getMenuInflater().inflate(R.menu.menu_main2, menu);
-    return true;
+  public static void start(Activity activity, User user) {
+    App.getInstance().getAppComponent().getUser().setUser(user);
+    Intent myIntent = new Intent(activity, MainActivity.class);
+    activity.startActivity(myIntent);
+    activity.finish();
   }
 
   @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-    // Handle action bar item clicks here. The action bar will
-    // automatically handle clicks on the Home/Up button, so long
-    // as you specify a parent activity in AndroidManifest.xml.
-    int id = item.getItemId();
-
-    //noinspection SimplifiableIfStatement
-    if (id == R.id.action_settings) {
-      return true;
-    }
-
-    return super.onOptionsItemSelected(item);
+  protected void onDestroy() {
+    super.onDestroy();
+    Timber.i("MainActivity.onDestroy");
   }
-
 
   /**
    * A {@link FragmentPagerAdapter} that returns a fragment corresponding to one of the
@@ -91,8 +84,12 @@ public class MainActivity extends AppCompatActivity {
       // Return a PlaceholderFragment (defined as a static inner class below).
       if (position == 0) {
         return new WeatherByCityFragment();
+      } else if (position == 1) {
+        return new WeatherByCitiesFragment();
+      } else {
+        return new MapFragment();
       }
-      return PlaceholderFragment.newInstance(position + 1);
+
     }
 
     @Override
