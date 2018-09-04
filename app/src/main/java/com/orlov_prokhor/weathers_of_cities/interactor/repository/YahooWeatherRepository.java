@@ -8,9 +8,14 @@ import com.orlov_prokhor.weathers_of_cities.utils.DateDeserializerRfc822;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+import java.io.IOException;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 import lombok.NonNull;
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -28,7 +33,7 @@ public class YahooWeatherRepository {
                     .create();
     //"Fri, 24 Aug 2018 09:00 AM OMST"   //"EEE, dd MMM yyyy HH:mm z zzz"
 //https://stackoverflow.com/questions/32294557/retrofit-intercept-responses-globally
-/*    OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder();
+   /* OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder();
     clientBuilder.
                      addInterceptor(new Interceptor() {
                        @Override
@@ -45,7 +50,7 @@ public class YahooWeatherRepository {
                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                    .addConverterFactory(GsonConverterFactory.create(gson))
                    // .addConverterFactory(ScalarsConverterFactory.create())
-                   // .client(clientBuilder.build())
+                 //    .client(clientBuilder.build())
                    .build();
 
     wService = retrofit.create(WeatherService.class);
@@ -54,8 +59,9 @@ public class YahooWeatherRepository {
   public Observable<WeatherCity> getWeatherYahooResponse(@NonNull String cityName) {
     //https://query.yahooapis.com/v1/public/yql?q=select%20yweather%3Awind%2Cyweather%3Alocation%2Cyweather%3Aatmosphere%2C%20item.condition%20from%20weather.forecast%20where%20woeid%20in%20(%20select%20woeid%20from%20geo.places(1)%20where%20text%3D%27omsk%27)%20and%20u%3D%27c%27&format=json
 //https://developer.yahoo.com/weather/documentation.html?guccounter=1#image
+    //   "select yweather:wind, yweather:location, yweather:atmosphere, item.condition, yweather:astronomy from  weather.forecast where woeid in ( select woeid from geo.places(1) where text='"
     String query =
-        "select yweather:wind,yweather:location,yweather:atmosphere, item.condition,yweather:astronomy from weather.forecast where woeid in ( select woeid from geo.places(1) where text='"
+        "select yweather:wind, yweather:location, yweather:atmosphere, item.condition, yweather:astronomy,yweather:units from  weather.forecast where woeid in ( select woeid from geo.places(1) where text='"
         + cityName + "') and u='c'";
 
     return wService.getWeatherYahooResponse(query, "json")

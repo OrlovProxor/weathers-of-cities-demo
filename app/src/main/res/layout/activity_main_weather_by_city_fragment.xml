@@ -6,8 +6,13 @@
 
 
   <data>
-
-
+    <import type="android.view.View"/>
+    <variable
+      name="sale"
+      type="java.lang.Boolean"/>
+    <import type="java.lang.Integer"/>
+    <import type="java.util.Date"/>
+    <import type="com.orlov_prokhor.weathers_of_cities.utils.DateTimeUtils"/>
     <variable
       name="viewModel"
       type="com.orlov_prokhor.weathers_of_cities.ui.main_activity.WeatherByCityViewModel"/>
@@ -42,6 +47,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="@={viewModel.cityName}"
+
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/cityName"/>
@@ -76,16 +82,34 @@
         app:layout_constraintGuide_end="64dp"/>
 
       <TextView
-        android:id="@+id/weatherOfCity"
+        android:id="@+id/messsage"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:singleLine="false"
-        android:text="@{viewModel.weather}"
+        android:text="@{viewModel.message}"
+        android:visibility="@{viewModel.messageVisible ? View.VISIBLE : View.GONE}"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/get_weather_by_city"/>
 
+      <TextView
+        android:id="@+id/weatherOfCity"
+
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+
+        android:layout_marginRight="8dp"
+        android:paddingBottom="40dp"
+        android:text="@{viewModel.weather}"
+        android:visibility="@{viewModel.weatherVisible ? View.VISIBLE: View.GONE}"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/messsage"/>
 
     </android.support.constraint.ConstraintLayout>
   </ScrollView>

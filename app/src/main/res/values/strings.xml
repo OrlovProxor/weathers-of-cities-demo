@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="app_name">weathers_of_cities</string>
+  <string name="app_name">weathers of cities</string>
   <string name="name">name :</string>
   <string name="username">user name :</string>
   <string name="password">password :</string>
@@ -18,19 +18,34 @@
   <string name="title_activity_main">Main Activity</string>
   <string name="tab_text_1">weather by city</string>
   <string name="tab_text_2">cities</string>
-  <string name="tab_text_3">maps</string>
+  <string name="tab_text_3">map</string>
 
 
-  <string name="input_city_name">input city name</string>
+  <string name="input_city_name">Enter the name of the city</string>
   <string name="get_weather_by_city">get weather by city</string>
-  <string name="cities">cities</string>
-  <string name="delete">delete</string>
-  <string name="showdetails">details</string>
+
 
   <string name="some_error_with_internet">some error with internet!</string>
   <string name="temperature">Temperature:</string>
   <string name="YahooNotFoundCityException"> not found city :</string>
-  <string name="WeatherCityDetailsDialogTitle">WeatherCityDetailsDialogTitle</string>
+
+  <string name="details_wheather">weather</string>
+  <string name="details_wheather_date">date</string>
+  <string name="details_wheather_temp">temperature</string>
+  <string name="details_wheather_code">condition </string>
+  <string name="details_wheather_wind">wind</string>
+  <string name="details_wheather_chill">chill</string>
+  <string name="details_wheather_direction">direction</string>
+  <string name="details_wheather_speed">speed</string>
+  <string name="details_wheather_atmosphere">atmosphere</string>
+  <string name="details_wheather_humidity">humidity</string>
+  <string name="details_wheather_pressure">pressure</string>
+  <string name="details_wheather_rising">rising</string>
+  <string name="details_wheather_visibility">visibility</string>
+  <string name="details_wheather_astronomy">astronomy</string>
+  <string name="details_wheather_sunrise">sunrise</string>
+  <string name="details_wheather_sunset">sunset</string>
+  <string name="current_location_accuracy"> accuracy:</string>
 
 
 </resources>

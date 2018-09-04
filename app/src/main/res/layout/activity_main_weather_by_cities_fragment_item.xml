@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  tools:context=".ui.main_activity.WeatherByCitiesFragment">
+
+  <data>
+    <import type="com.orlov_prokhor.weathers_of_cities.ui.main_activity.WeatherByCitiesFragment"/>
+
+    <variable
+      name="weatherCity"
+      type="com.orlov_prokhor.weathers_of_cities.interactor.persistence.entity.WeatherCity"/>
+    <variable
+      name="viewHolder"
+      type="com.orlov_prokhor.weathers_of_cities.ui.main_activity.WeatherByCitiesViewHolder"/>
+
+  </data>
+
+  <android.support.constraint.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:onClick="@{(v)-> viewHolder.showDetails()}"
+    >
+
+    <TextView
+      android:id="@+id/tvTitle"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
+      android:layout_marginStart="8dp"
+      android:layout_marginEnd="8dp"
+      android:layout_marginRight="8dp"
+      android:text="@{weatherCity.locationFull}"
+      android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+      app:layout_constraintEnd_toStartOf="@+id/btnDelete"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+      android:id="@+id/tvTemperatureLabel"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
+      android:layout_marginStart="8dp"
+      android:layout_marginLeft="8dp"
+      android:text="@string/temperature"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+      android:onClick="@{(v)-> viewHolder.showDetails()}"/>
+    <TextView
+      android:id="@+id/tvTemperature"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
+      android:layout_marginStart="8dp"
+      android:layout_marginEnd="8dp"
+      android:layout_marginLeft="8dp"
+      android:layout_marginRight="8dp"
+      android:maxLines="3"
+      android:onClick="@{(v)-> viewHolder.showDetails()}"
+      android:text='@{String.format("%d °C", weatherCity.weather.temp)}'
+      app:layout_constraintEnd_toStartOf="@+id/btnDelete"
+      app:layout_constraintHorizontal_bias="0.0"
+      app:layout_constraintStart_toEndOf="@+id/tvTemperatureLabel"
+
+      app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+      />
+
+    <ImageView
+      android:id="@+id/btnDelete"
+      android:layout_width="30dp"
+      android:layout_height="42dp"
+
+      android:layout_marginTop="8dp"
+      android:layout_marginBottom="8dp"
+
+      android:layout_marginEnd="8dp"
+      android:layout_marginRight="8dp"
+      android:onClick="@{(v)-> viewHolder.deleteWeatherCity()}"
+      android:src="@android:drawable/ic_delete"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toTopOf="parent"/>
+
+
+
+
+  </android.support.constraint.ConstraintLayout>
+</layout>

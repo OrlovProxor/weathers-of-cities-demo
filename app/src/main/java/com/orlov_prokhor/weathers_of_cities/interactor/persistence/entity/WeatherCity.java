@@ -10,6 +10,7 @@ import com.orlov_prokhor.weathers_of_cities.interactor.repository.weather_api.ya
 import com.orlov_prokhor.weathers_of_cities.interactor.repository.weather_api.yahoo_apis_pojos.Channel;
 import com.orlov_prokhor.weathers_of_cities.interactor.repository.weather_api.yahoo_apis_pojos.Condition;
 import com.orlov_prokhor.weathers_of_cities.interactor.repository.weather_api.yahoo_apis_pojos.Location;
+import com.orlov_prokhor.weathers_of_cities.interactor.repository.weather_api.yahoo_apis_pojos.Units;
 import com.orlov_prokhor.weathers_of_cities.interactor.repository.weather_api.yahoo_apis_pojos.Wind;
 import lombok.Builder;
 import lombok.Data;
@@ -23,11 +24,14 @@ public class WeatherCity {
   @NonNull
   @PrimaryKey()
   public                                   String     locationFull = "";
-  @Embedded(prefix = "atmosphere_") public Atmosphere atmosphere;
-  @Embedded(prefix = "weather_") public    Condition  weather;
   @Embedded(prefix = "location_") public   Location   location;
-  @Embedded(prefix = "astronomy_") public  Astronomy  astronomy;
+  @Embedded(prefix = "weather_") public    Condition  weather;
+  @Embedded(prefix = "atmosphere_") public Atmosphere atmosphere;
   @Embedded(prefix = "wind_") public       Wind       wind;
+  @Embedded(prefix = "astronomy_") public  Astronomy  astronomy;
+  @Embedded(prefix = "units_") public  Units  units;
+
+
 
   public WeatherCity() {
   }
@@ -39,6 +43,7 @@ public class WeatherCity {
     this.weather = channel.item.condition;
     this.location = channel.location;
     this.wind = channel.wind;
+    this.units = channel.units;
     locationFull = location.country + ", " + location.region + ", " + location.city;
   }
 

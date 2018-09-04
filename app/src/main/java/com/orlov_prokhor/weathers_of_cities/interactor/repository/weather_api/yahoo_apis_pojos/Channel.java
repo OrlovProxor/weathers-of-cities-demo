@@ -7,4 +7,5 @@ public class Channel {
   public Location   location;
   public Astronomy  astronomy;
   public Wind       wind;
+  public Units      units;
 }

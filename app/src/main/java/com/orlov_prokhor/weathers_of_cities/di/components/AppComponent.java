@@ -8,7 +8,9 @@ import com.orlov_prokhor.weathers_of_cities.interactor.persistence.database.Weat
 import com.orlov_prokhor.weathers_of_cities.interactor.repository.UserRepository;
 import com.orlov_prokhor.weathers_of_cities.interactor.repository.WeatherRepository;
 import com.orlov_prokhor.weathers_of_cities.interactor.repository.YahooWeatherRepository;
+import com.orlov_prokhor.weathers_of_cities.ui.main_activity.MapFragment;
 import com.orlov_prokhor.weathers_of_cities.ui.main_activity.WeatherByCitiesAdapter;
+import com.orlov_prokhor.weathers_of_cities.ui.main_activity.WeatherByCitiesViewHolder;
 import com.orlov_prokhor.weathers_of_cities.ui.main_activity.WeatherByCitiesViewModel;
 import com.orlov_prokhor.weathers_of_cities.ui.main_activity.WeatherByCityViewModel;
 import dagger.Component;
@@ -39,5 +41,9 @@ public interface AppComponent {
 
   void inject(WeatherByCitiesViewModel weatherByCitiesViewModel);
 
-  void inject(WeatherByCitiesAdapter getWeatherByCitiesAdapter);
+  void inject(WeatherByCitiesAdapter weatherByCitiesAdapter);
+  void inject(WeatherByCitiesViewHolder weatherByCitiesViewHolder);
+  void inject(MapFragment mapFragment);
+
+
 }

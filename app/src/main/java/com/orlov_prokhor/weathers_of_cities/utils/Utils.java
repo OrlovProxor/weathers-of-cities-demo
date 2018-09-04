@@ -1,7 +1,10 @@
 package com.orlov_prokhor.weathers_of_cities.utils;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.text.Html;
+import android.text.Spanned;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.lang.reflect.Field;
@@ -141,5 +144,14 @@ public class Utils {
     }
 
     return result;
+  }
+
+  @SuppressWarnings("deprecation")
+  public static Spanned fromHtml(String html) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+      return Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY);
+    } else {
+      return Html.fromHtml(html);
+    }
   }
 }

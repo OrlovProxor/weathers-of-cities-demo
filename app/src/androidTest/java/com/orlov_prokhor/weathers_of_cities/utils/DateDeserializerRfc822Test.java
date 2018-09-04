@@ -11,7 +11,6 @@ public class DateDeserializerRfc822Test {
 
   @Test
   public void strRfc822ToDateTest() {
-
     //"Fri, 24 Aug 2018 12:00 AM EDT"   "Fri, 24 Aug 2018 10:00 AM OMST"
     Date d = strRfc822ToDate("Fri, 24 Aug 2018 12:13 AM EDT");
     Timber.i("strRfc822ToDate: %tc", d);
@@ -23,6 +22,14 @@ public class DateDeserializerRfc822Test {
     Date d3 = strRfc822ToDate("Fri, 24 Aug 2018 12:00 PM NOVT");
     assertNotEqual(null, d3);
     Timber.i("strRfc822ToDate3: %tc", d3);
+
+    Date d4 = strRfc822ToDate("Fri, 27 Aug 2018 09:00 AM");
+    assertNotEqual(null, d4);
+    Timber.i("strRfc822ToDate4: %tc", d4);
+
+    Date d5 = strRfc822ToDate("Fri, 24 Aug 2018 12:00 PM NOVT");
+    assertNotEqual(null, d5);
+    Timber.i("strRfc822ToDate5: %tc", d5);
 
   }
 }

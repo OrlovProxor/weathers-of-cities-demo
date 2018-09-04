@@ -2,6 +2,8 @@ package com.orlov_prokhor.weathers_of_cities.ui.main_activity;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
+import android.databinding.Observable;
+import android.databinding.Observable.OnPropertyChangedCallback;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -50,7 +52,13 @@ public class WeatherByCityFragment extends Fragment {
     weatherByCityViewModel = ViewModelProviders.of(this.getActivity())
                                                .get(WeatherByCityViewModel.class);
     mBinding.setViewModel(weatherByCityViewModel);
-
+    weatherByCityViewModel.weather.addOnPropertyChangedCallback(new OnPropertyChangedCallback() {
+      @Override
+      public void onPropertyChanged(Observable sender, int propertyId) {
+        mBinding.weatherOfCity.setText( weatherByCityViewModel.weather.get());
+      }
+    });
+    mBinding.weatherOfCity.setText(weatherByCityViewModel.weather.get());
 
   }
 

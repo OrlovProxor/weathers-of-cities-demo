@@ -9,6 +9,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 //https://stackoverflow.com/questions/25455123/gson-fails-to-parse-using-gsonbuilder-setdateformatyyyy-mm-ddthhmmss-sssz
 public class DateDeserializerRfc822 implements JsonDeserializer<Date> {
@@ -16,7 +17,7 @@ public class DateDeserializerRfc822 implements JsonDeserializer<Date> {
   public static final String     RFC822_DATE_FORMAT       = "EEE, dd MMM yyyy HH:mm a z";
   public static final String     RFC822_DATE_FORMAT_SHORT = "EEE, dd MMM yyyy HH:mm a";
   public static final DateFormat formatter                = new SimpleDateFormat(
-      RFC822_DATE_FORMAT);
+      RFC822_DATE_FORMAT, Locale.ENGLISH);
 
   public static Date strRfc822ToDate(String strDate) {
     try {
@@ -24,7 +25,7 @@ public class DateDeserializerRfc822 implements JsonDeserializer<Date> {
     } catch (ParseException exp) {
       try {
         strDate = strDate.substring(0, strDate.lastIndexOf(" "));
-        return new SimpleDateFormat(RFC822_DATE_FORMAT_SHORT).parse(strDate);
+        return new SimpleDateFormat(RFC822_DATE_FORMAT_SHORT, Locale.ENGLISH).parse(strDate);
       } catch (ParseException exp2) {
         return null;
       }

@@ -63,8 +63,8 @@ public class App extends Application {
   }
 
 
-  public AppComponent getAppComponent() {
-    return this.appComponent;
+  public static AppComponent getAppComponent() {
+    return App.getInstance().appComponent;
   }
 
 

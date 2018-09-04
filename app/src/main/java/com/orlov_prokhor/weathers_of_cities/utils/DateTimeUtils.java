@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.TimeZone;
 
 /**
@@ -15,8 +16,9 @@ public class DateTimeUtils {
 
   //https://gist.github.com/nickrussler/7527851
   public static String toISO8601UTC(Date date) {
+    if(date==null) return  null;
     TimeZone   tz = TimeZone.getTimeZone("UTC");
-    DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+    DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.ENGLISH);
     df.setTimeZone(tz);
     return df.format(date);
   }
@@ -24,7 +26,7 @@ public class DateTimeUtils {
   //https://gist.github.com/nickrussler/7527851
   public static Date fromISO8601UTC(String dateStr) {
     TimeZone   tz = TimeZone.getTimeZone("UTC");
-    DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+    DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.ENGLISH);
     df.setTimeZone(tz);
 
     try {
@@ -38,7 +40,7 @@ public class DateTimeUtils {
 
   public static Time HHmmToTime(String HHmmStr) {
 
-    DateFormat df = new SimpleDateFormat("H:m");
+    DateFormat df = new SimpleDateFormat("H:m", Locale.ENGLISH);
 
     try {
       return new Time(df.parse(HHmmStr).getTime());

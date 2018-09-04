@@ -1,5 +1,9 @@
 package com.orlov_prokhor.weathers_of_cities.interactor.repository;
 
+
+import static com.orlov_prokhor.weathers_of_cities.utils.Utils.fromHtml;
+
+import android.text.Spanned;
 import com.orlov_prokhor.weathers_of_cities.interactor.persistence.dao.WeathersDao;
 import com.orlov_prokhor.weathers_of_cities.interactor.persistence.entity.WeatherCity;
 import io.reactivex.Flowable;
@@ -16,6 +20,8 @@ public class WeatherRepository {
   public WeatherRepository(WeathersDao weathersDao) {
     this.weathersDao = weathersDao;
   }
+
+
 
   public void upsertWeatherCity(WeatherCity weatherCity) {
 

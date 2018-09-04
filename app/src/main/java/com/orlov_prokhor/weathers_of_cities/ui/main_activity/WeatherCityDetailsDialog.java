@@ -1,5 +1,8 @@
 package com.orlov_prokhor.weathers_of_cities.ui.main_activity;
 
+
+import static com.orlov_prokhor.weathers_of_cities.ui.WeatherCityUtils.weatherCityToStr;
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.databinding.DataBindingUtil;
@@ -26,11 +29,13 @@ public class WeatherCityDetailsDialog extends Dialog {
                                                                    null,
                                                                    false);
     setContentView(reviewBinding.getRoot());
-    reviewBinding.setWeatherCity(weatherCity);
-    reviewBinding.included.setWeatherCity(weatherCity);
-
+    reviewBinding.tvweather.setText(weatherCityToStr(weatherCity));
+    reviewBinding.setDialog(this);
 
   }
 
+  public void close() {
+    dismiss();
+  }
 
 }

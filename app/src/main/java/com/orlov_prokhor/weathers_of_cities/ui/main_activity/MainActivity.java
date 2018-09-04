@@ -3,6 +3,7 @@ package com.orlov_prokhor.weathers_of_cities.ui.main_activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
   /**
    * The {@link ViewPager} that will host the section contents.
    */
+
   private ViewPager mViewPager;
 
   @Override
